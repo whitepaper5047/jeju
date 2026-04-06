@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>더큰내일센터 뉴스레터</title>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --surface: rgba(255,255,255,0.72);
+      --surface-strong: rgba(255,255,255,0.88);
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --line: rgba(0,0,0,0.08);
+      --blue: #0071e3;
+      --blue-dark: #0058b0;
+      --green: #18a957;
+      --orange: #ff9f0a;
+      --shadow: 0 20px 60px rgba(0,0,0,0.08);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --max: 1280px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Pretendard", "Noto Sans KR", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(0,113,227,0.10), transparent 30%),
+        radial-gradient(circle at top right, rgba(255,159,10,0.10), transparent 26%),
+        linear-gradient(180deg, #fbfbfd 0%, #f2f2f7 100%);
+      letter-spacing: -0.02em;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: saturate(180%) blur(18px);
+      background: rgba(255,255,255,0.72);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 64px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #0071e3, #59a7ff);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      padding: 72px 0 36px;
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 40px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.78), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,0.90), rgba(255,255,255,0.64));
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: var(--shadow);
+      padding: 64px 56px;
+      min-height: 560px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(0,113,227,0.08);
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(44px, 7vw, 84px);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      font-weight: 800;
+    }
+
+    .hero p {
+      margin: 20px 0 0;
+      font-size: clamp(17px, 2vw, 24px);
+      line-height: 1.5;
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: 0.2s ease;
+    }
+
+    .button.primary {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(0,113,227,0.22);
+    }
+
+    .button.primary:hover { background: var(--blue-dark); }
+
+    .button.secondary {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(0,0,0,0.08);
+      color: var(--text);
+    }
+
+    .hero-visual {
+      align-self: stretch;
+      display: grid;
+      gap: 18px;
+      align-content: center;
+    }
+
+    .glass-card {
+      border-radius: 28px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-stats {
+      padding: 26px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .hero-stat {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(248,248,250,0.95);
+      border: 1px solid var(--line);
+    }
+
+    .hero-stat .eyebrow {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .hero-stat .value {
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 800;
+      line-height: 1.05;
+    }
+
+    .hero-news-ticker {
+      padding: 24px 26px;
+    }
+
+    .hero-news-ticker h3,
+    .section-header h2,
+    .dashboard-head h2,
+    .footer h3 {
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-news-ticker ul {
+      list-style: none;
+      margin: 16px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .hero-news-ticker li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .mini-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex: 0 0 auto;
+    }
+
+    .section {
+      padding: 42px 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(28px, 4vw, 44px);
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.5;
+    }
+
+    .news-grid,
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .news-card,
+    .job-card,
+    .dash-card,
+    .insight-card,
+    .cta-card {
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,0.80);
+      border: 1px solid rgba(255,255,255,0.74);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .news-card:nth-child(1) {
+      grid-column: span 7;
+      min-height: 360px;
+      background: linear-gradient(135deg, #0b0b0f 0%, #1c1f29 70%, #243b67 100%);
+      color: white;
+    }
+
+    .news-card:nth-child(2),
+    .news-card:nth-child(3) {
+      grid-column: span 5;
+      min-height: 360px;
+    }
+
+    .card-inner {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px;
+      gap: 18px;
+    }
+
+    .card-tag {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      color: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      width: fit-content;
+      letter-spacing: 0.01em;
+    }
+
+    .light-tag {
+      background: rgba(0,113,227,0.08);
+      color: var(--blue);
+    }
+
+    .card-title {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.04;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      margin: 0;
+    }
+
+    .card-subtitle {
+      margin: 12px 0 0;
+      color: inherit;
+      opacity: 0.82;
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    .meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .news-card:nth-child(1) .meta,
+    .news-card:nth-child(1) .card-subtitle {
+      color: rgba(255,255,255,0.82);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .dash-card.big {
+      grid-column: span 7;
+      padding: 26px;
+    }
+
+    .dash-card.side {
+      grid-column: span 5;
+      padding: 26px;
+    }
+
+    .dashboard-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .dashboard-head p,
+    .muted {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .metric {
+      padding: 18px;
+      border-radius: 22px;
+      background: #f7f7fa;
+      border: 1px solid var(--line);
+    }
+
+    .metric .label {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .metric .number {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .metric .delta {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .delta.up { color: var(--green); }
+    .delta.warn { color: var(--orange); }
+
+    .bars {
+      display: grid;
+      gap: 16px;
+    }
+
+    .bar-item {
+      display: grid;
+      grid-template-columns: 92px 1fr 46px;
+      gap: 12px;
+      align-items: center;
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .bar-track {
+      height: 10px;
+      background: #ececf1;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #56a7ff, #0071e3);
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .mini-item {
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: #f7f7fa;
+      border: 1px solid var(--line);
+    }
+
+    .mini-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .jobs-grid .job-card {
+      grid-column: span 4;
+      min-height: 330px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(250,250,252,0.82));
+    }
+
+    .job-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .company-chip {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(0,113,227,0.08);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .job-title {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .job-desc {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .job-points {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .job-points li {
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .job-points li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    .insight-wrap {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .insight-card {
+      grid-column: span 6;
+      padding: 28px;
+    }
+
+    .insight-card h3,
+    .cta-card h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .insight-card p,
+    .cta-card p,
+    .footer p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .cta {
+      padding: 16px 0 72px;
+    }
+
+    .cta-card {
+      padding: 38px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(236,244,255,0.92));
+    }
+
+    .cta-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: grid;
+      gap: 10px;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .cta-list li::before {
+      content: "✓";
+      color: var(--blue);
+      margin-right: 10px;
+      font-weight: 800;
+    }
+
+    .footer {
+      padding: 0 0 48px;
+    }
+
+    .footer-card {
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 1060px) {
+      .hero-card,
+      .cta-card,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .news-card:nth-child(1),
+      .news-card:nth-child(2),
+      .news-card:nth-child(3),
+      .dash-card.big,
+      .dash-card.side,
+      .jobs-grid .job-card,
+      .insight-card {
+        grid-column: span 12;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max));
+      }
+
+      .nav-inner {
+        min-height: 58px;
+      }
+
+      .nav-links {
+        gap: 14px;
+        font-size: 13px;
+      }
+
+      .hero {
+        padding-top: 24px;
+      }
+
+      .hero-card {
+        padding: 30px 22px;
+        min-height: auto;
+        border-radius: 28px;
+      }
+
+      .hero-stats,
+      .metric-row {
+        grid-template-columns: 1fr;
+      }
+
+      .card-inner,
+      .dash-card.big,
+      .dash-card.side,
+      .insight-card,
+      .cta-card {
+        padding: 22px;
+      }
+
+      .bar-item {
+        grid-template-columns: 72px 1fr 36px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <span>더큰내일센터 뉴스레터</span>
+      </div>
+      <div class="nav-links">
+        <a href="#center-news">센터 소식</a>
+        <a href="#dashboard">대시보드</a>
+        <a href="#jobs">채용 소식</a>
+        <a href="#insight">학습 포인트</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <section class="hero-card">
+        <div>
+          <div class="hero-badge">2026 WEEKLY LETTER · 학생용 브리핑</div>
+          <h1>이번 주,<br>더 큰 기회를<br>가까이.</h1>
+          <p>
+            더큰내일센터의 최신 프로그램 소식, 기업 채용 정보,
+            그리고 한눈에 보는 참여 지표를 한 페이지에 담았습니다.
+            학생들이 빠르게 읽고 바로 움직일 수 있도록 설계한 랜딩 페이지입니다.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#center-news">센터 소식 보기</a>
+            <a class="button secondary" href="#jobs">채용 정보 확인</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="glass-card hero-stats">
+            <div class="hero-stat">
+              <div class="eyebrow">이번 주 프로그램</div>
+              <div class="value">3건</div>
+            </div>
+            <div class="hero-stat">
+              <div class="eyebrow">신규 채용 공고</div>
+              <div class="value">3건</div>
+            </div>
+            <div class="hero-stat">
+              <div class="eyebrow">참여 신청률</div>
+              <div class="value">78%</div>
+            </div>
+            <div class="hero-stat">
+              <div class="eyebrow">진로 상담 예약</div>
+              <div class="value">24건</div>
+            </div>
+          </div>
+
+          <div class="glass-card hero-news-ticker">
+            <h3>한 줄 요약</h3>
+            <ul>
+              <li><span class="mini-dot"></span> 프로젝트 발표 피드백 세션 운영</li>
+              <li><span class="mini-dot"></span> 현직자 특강 참가자 모집 시작</li>
+              <li><span class="mini-dot"></span> 관광·서비스 직무 채용 공고 업데이트</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="center-news">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>더큰내일센터 소식</h2>
+          </div>
+          <p>
+            센터 일정과 학생 참여 기회를 중심으로 구성했습니다.
+            실제 배포 시 제목, 날짜, 링크만 교체하면 바로 사용할 수 있습니다.
+          </p>
+        </div>
+
+        <div class="news-grid">
+          <article class="news-card">
+            <div class="card-inner">
+              <div>
+                <div class="card-tag">센터 메인 소식</div>
+                <h3 class="card-title">프로젝트 중간공유회 운영</h3>
+                <p class="card-subtitle">
+                  팀별 진행 현황을 공유하고, 문제 정의·해결 방향·실행 계획에 대한
+                  피드백을 받을 수 있는 공개 세션이 열립니다. 발표력과 구조화 역량을 함께 점검하는 주간 프로그램입니다.
+                </p>
+              </div>
+              <div class="meta">
+                <span>일정 04.10</span>
+                <span>대상 전 기수</span>
+                <span>장소 센터 메인홀</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <div class="card-inner">
+              <div>
+                <div class="card-tag light-tag">모집 중</div>
+                <h3 class="card-title" style="color: var(--text);">현직자 특강<br>사전 신청 오픈</h3>
+                <p class="card-subtitle" style="color: var(--muted); opacity:1;">
+                  관광, 마케팅, 고객경험 직무 현직자가 참여합니다.
+                  실무 역량, 포트폴리오, 인턴 준비 팁을 중심으로 Q&amp;A 세션이 진행됩니다.
+                </p>
+              </div>
+              <div class="meta">
+                <span>신청 마감 04.12</span>
+                <span>선착순 60명</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <div class="card-inner">
+              <div>
+                <div class="card-tag light-tag">공지</div>
+                <h3 class="card-title" style="color: var(--text);">1:1 진로상담<br>주간 예약 안내</h3>
+                <p class="card-subtitle" style="color: var(--muted); opacity:1;">
+                  이력서 점검, 자기소개서 구조화, 직무 탐색을 위한 상담 슬롯이 열렸습니다.
+                  학생별 목표에 맞춰 짧고 밀도 있게 운영됩니다.
+                </p>
+              </div>
+              <div class="meta">
+                <span>예약 가능 24건</span>
+                <span>개별 20분</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dashboard">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>간단한 대시보드</h2>
+          </div>
+          <p>
+            센터 참여 현황과 직무 관심 흐름을 직관적으로 보여주는 예시입니다.
+            실제 데이터가 있으면 숫자만 교체해도 충분합니다.
+          </p>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="dash-card big">
+            <div class="dashboard-head">
+              <div>
+                <h2 style="font-size:32px;">이번 주 참여 지표</h2>
+                <p>핵심 프로그램, 상담, 채용 열람 반응을 묶어 보여주는 카드</p>
+              </div>
+              <div class="company-chip">Weekly Snapshot</div>
+            </div>
+
+            <div class="metric-row">
+              <div class="metric">
+                <div class="label">프로그램 참여율</div>
+                <div class="number">78%</div>
+                <div class="delta up">전주 대비 +9%</div>
+              </div>
+              <div class="metric">
+                <div class="label">채용 공고 클릭수</div>
+                <div class="number">146</div>
+                <div class="delta up">전주 대비 +18</div>
+              </div>
+              <div class="metric">
+                <div class="label">상담 예약률</div>
+                <div class="number">64%</div>
+                <div class="delta warn">잔여 슬롯 9건</div>
+              </div>
+            </div>
+
+            <div class="bars">
+              <div class="bar-item">
+                <span>관광</span>
+                <div class="bar-track"><div class="bar-fill" style="width: 84%;"></div></div>
+                <strong>84</strong>
+              </div>
+              <div class="bar-item">
+                <span>마케팅</span>
+                <div class="bar-track"><div class="bar-fill" style="width: 72%;"></div></div>
+                <strong>72</strong>
+              </div>
+              <div class="bar-item">
+                <span>영업</span>
+                <div class="bar-track"><div class="bar-fill" style="width: 58%;"></div></div>
+                <strong>58</strong>
+              </div>
+              <div class="bar-item">
+                <span>서비스</span>
+                <div class="bar-track"><div class="bar-fill" style="width: 67%;"></div></div>
+                <strong>67</strong>
+              </div>
+            </div>
+          </div>
+
+          <aside class="dash-card side">
+            <div class="dashboard-head">
+              <div>
+                <h2 style="font-size:28px;">이번 주 체크포인트</h2>
+                <p>학생 안내용 한 줄 요약</p>
+              </div>
+            </div>
+            <div class="mini-list">
+              <div class="mini-item">
+                <strong>가장 반응이 좋은 항목</strong>
+                <p class="muted">현직자 특강과 1:1 진로상담 예약 공지가 가장 높은 클릭을 기록했습니다.</p>
+              </div>
+              <div class="mini-item">
+                <strong>보완이 필요한 항목</strong>
+                <p class="muted">채용 공고는 직무별 요약과 마감일 강조가 있으면 열람률이 더 올라갑니다.</p>
+              </div>
+              <div class="mini-item">
+                <strong>운영 팁</strong>
+                <p class="muted">뉴스레터 상단에 이번 주 핵심 3가지를 먼저 배치하면 학생 반응이 더 빨라집니다.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="jobs">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>기업 채용 소식</h2>
+          </div>
+          <p>
+            관광·서비스·마케팅 직무 중심의 예시 카드입니다.
+            실제 채용 링크, 마감일, 지역, 우대사항을 넣어 바로 배포할 수 있습니다.
+          </p>
+        </div>
+
+        <div class="jobs-grid">
+          <article class="job-card">
+            <div class="card-inner">
+              <div>
+                <div class="job-top">
+                  <span class="company-chip">제주 관광기업</span>
+                  <span class="meta">채용중</span>
+                </div>
+                <h3 class="job-title">콘텐츠·마케팅<br>인턴</h3>
+                <p class="job-desc">
+                  지역 관광 콘텐츠 기획, SNS 운영, 캠페인 보조 업무를 경험할 수 있는 포지션입니다.
+                </p>
+              </div>
+              <ul class="job-points">
+                <li>근무지역: 제주</li>
+                <li>우대역량: 카드뉴스, 글쓰기, SNS 감각</li>
+                <li>마감: 04.15</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="job-card">
+            <div class="card-inner">
+              <div>
+                <div class="job-top">
+                  <span class="company-chip">호텔·서비스</span>
+                  <span class="meta">추천 공고</span>
+                </div>
+                <h3 class="job-title">고객경험 운영<br>사원</h3>
+                <p class="job-desc">
+                  고객 응대, 운영 지원, 현장 이슈 대응을 통해 서비스 직무의 기본기를 빠르게 익힐 수 있습니다.
+                </p>
+              </div>
+              <ul class="job-points">
+                <li>근무지역: 제주 / 교대 가능</li>
+                <li>우대역량: 커뮤니케이션, 현장 대응</li>
+                <li>마감: 04.18</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="job-card">
+            <div class="card-inner">
+              <div>
+                <div class="job-top">
+                  <span class="company-chip">스타트업</span>
+                  <span class="meta">신규 등록</span>
+                </div>
+                <h3 class="job-title">사업개발·운영<br>어시스턴트</h3>
+                <p class="job-desc">
+                  제안서 보조, 파트너 커뮤니케이션, 데이터 정리를 함께 수행하는 초기 사업개발 포지션입니다.
+                </p>
+              </div>
+              <ul class="job-points">
+                <li>근무형태: 인턴 / 계약</li>
+                <li>우대역량: 엑셀, 문서작성, 발표</li>
+                <li>마감: 04.20</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="insight">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>학생용 학습 포인트</h2>
+          </div>
+          <p>
+            단순 공지보다 더 도움이 되도록, 학생들이 이번 주에 바로 행동할 수 있는 포인트를 함께 제시합니다.
+          </p>
+        </div>
+
+        <div class="insight-wrap">
+          <article class="insight-card">
+            <h3>뉴스레터 활용법</h3>
+            <p>
+              이번 주에는 센터 소식 중 하나, 채용 소식 중 하나를 골라 실제 행동으로 연결해 보세요.
+              예를 들어 특강 신청, 상담 예약, 채용 공고 저장처럼 한 가지 실행만 해도 체감이 달라집니다.
+            </p>
+          </article>
+          <article class="insight-card">
+            <h3>채용 공고 읽는 기준</h3>
+            <p>
+              직무명만 보지 말고 실제 업무, 우대역량, 마감일, 근무지역을 같이 확인하세요.
+              학생 단계에서는 완벽한 스펙보다 직무 이해도와 지원 속도가 더 중요할 때가 많습니다.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-card">
+          <div>
+            <h3>학생들이 빠르게 읽고, 바로 움직이게.</h3>
+            <p>
+              이 페이지는 한 개의 HTML 파일로 구성되어 있어 메일 링크, 웹 게시, 화면 공유 등 다양한 방식으로 활용할 수 있습니다.
+              실제 운영 시에는 제목, 날짜, 링크, 숫자만 교체해도 높은 완성도를 유지할 수 있습니다.
+            </p>
+          </div>
+          <div>
+            <ul class="cta-list">
+              <li>센터 소식 3개 카드형 구성</li>
+              <li>채용 소식 3개 직무형 구성</li>
+              <li>간단한 수치 대시보드 포함</li>
+              <li>애플 스타일의 미니멀 UI</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-card">
+      <div>
+        <h3 style="font-size:18px; margin-bottom:8px;">더큰내일센터 뉴스레터 랜딩 페이지</h3>
+        <p>학생 대상 배포용 예시 시안 · 1 file HTML</p>
+      </div>
+      <small>© 2026 The Bigger Tomorrow Center. All rights reserved.</small>
+    </div>
+  </footer>
+</body>
+</html>
